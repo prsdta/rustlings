@@ -3,9 +3,12 @@
 
 // Execute `rustlings hint generics1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+fn foo<'a>() {
+    // Any lifetime would work here, as long as it's the same as the function's lifetime
+    let mut shopping_list: Vec<&'a str> = Vec::new();
+    shopping_list.push("milk");
+}
 
 fn main() {
-    let mut shopping_list: Vec<?> = Vec::new();
-    shopping_list.push("milk");
+    foo()
 }

@@ -3,15 +3,20 @@
 
 // Execute `rustlings hint generics2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
-struct Wrapper {
-    value: u32,
+struct Wrapper<T> {
+    value: T,
 }
 
-impl Wrapper {
-    pub fn new(value: u32) -> Self {
+impl<T> Wrapper<T> {
+    pub fn new(value: T) -> Self {
         Wrapper { value }
+    }
+}
+
+// You declare T for the whole impl block, but the generic type can be used in many ways
+impl<T> Wrapper<Vec<T>> {
+    pub fn new_vec(value: T) -> Self {
+        Wrapper { value: vec![value] }
     }
 }
 
