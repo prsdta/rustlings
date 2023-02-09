@@ -14,8 +14,6 @@
 
 // Execute `rustlings hint hashmaps3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 use std::collections::HashMap;
 
 // A structure to store team name and its goal details.
@@ -40,6 +38,55 @@ fn build_scores_table(results: String) -> HashMap<String, Team> {
         // will be the number of goals conceded from team_2, and similarly
         // goals scored by team_2 will be the number of goals conceded by
         // team_1.
+        let team1_entry = scores.entry(team_1_name.to_string()).or_insert(Team {
+            name: team_1_name,
+            goals_conceded: 0,
+            goals_scored: 0,
+        });
+        *team1_entry = Team {
+            goals_scored: team1_entry.goals_scored + team_1_score,
+            goals_conceded: team1_entry.goals_conceded + team_2_score,
+            name: team1_entry.name.clone()
+        };
+
+        let team2_entry = scores.entry(team_2_name.to_string()).or_insert(Team {
+            name: team_2_name,
+            goals_conceded: 0,
+            goals_scored: 0,
+        });
+        *team2_entry = Team {
+            goals_scored: team2_entry.goals_scored + team_2_score,
+            goals_conceded: team2_entry.goals_conceded + team_1_score,
+            name: team2_entry.name.clone()
+        };
+
+        // let update_value1 = scores.get(&team_1_name).map_or(
+        //     Team {
+        //         goals_scored: team_1_score,
+        //         goals_conceded: team_2_score,
+        //         name: team_1_name.clone(),
+        //     },
+        //     |current_team| Team {
+        //         goals_scored: current_team.goals_scored + team_1_score,
+        //         goals_conceded: current_team.goals_conceded + team_2_score,
+        //         name: current_team.name.clone(),
+        //     },
+        // );
+        // scores.insert(team_1_name, update_value1);
+
+        // let update_value2 = scores.get(&team_2_name).map_or(
+        //     Team {
+        //         goals_scored: team_2_score,
+        //         goals_conceded: team_1_score,
+        //         name: team_2_name.clone(),
+        //     },
+        //     |current_team| Team {
+        //         goals_scored: current_team.goals_scored + team_2_score,
+        //         goals_conceded: current_team.goals_conceded + team_1_score,
+        //         name: current_team.name.clone(),
+        //     },
+        // );
+        // scores.insert(team_2_name, update_value2);
     }
     scores
 }
