@@ -22,17 +22,14 @@ impl AppendBar for Vec<String> {
     }
 }
 
-fn do_append(vec: &Vec<String>) {
-    vec.append_bar();
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn is_vec_pop_eq_bar() {
-        let mut foo = vec![String::from("Foo")].append_bar();
+        let foo_vec = vec![String::from("Foo")];
+        let mut foo = foo_vec.append_bar();
         assert_eq!(foo.pop().unwrap(), String::from("Bar"));
         assert_eq!(foo.pop().unwrap(), String::from("Foo"));
     }
