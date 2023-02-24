@@ -23,7 +23,7 @@ fn main() {
             `lock()` has a `MutexGuard` that automatically unlocks when
             leaving the scope.
             */
-            status_shared.lock().is_ok_and(|js| js.jobs_completed += 1);
+            status_shared.lock().unwrap().jobs_completed += 1;
         });
         handles.push(handle);
     }
